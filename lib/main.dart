@@ -32,12 +32,14 @@ class _MyHomePageState extends State<MyHomePage> {
   String _file = "https:\/\/purr.objects-us-east-1.dream.io\/i\/rd0Nc.jpg";
 
   void _getCatPhoto() async {
-    String url = "https://aws.random.cat/meow";
+    //String url = "https://aws.random.cat/meow"; // other server
+    String host = "http://10.0.2.2:5000";
+    String url =  host + "/getpic";
+
     http.Response response = await http.get(url);
     setState(() {
       final fileJSON = json.decode(response.body);
-      _file = fileJSON["file"];
-
+      _file = host + fileJSON["file"];
     });
   }
 
